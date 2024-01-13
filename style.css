@@ -1,0 +1,19 @@
+.btn{
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+.like-btn{
+display: flex;
+flex-direction: row;
+    
+    align-items: center;
+}
+
+.quantity{
+display: flex;
+flex-direction: row;
+align-items: center;
+
+
+}

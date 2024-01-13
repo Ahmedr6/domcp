@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>domCheckpoint</title>
+</head>
+
+<body>
+    <h1>This is a shopping cart in which you can purchase or adjust your quantity</h1>
+    <div class="yap">
+        <img src="headphone-logitech-gaming-g435-back-usb-jpg.webp" alt="logitech headphone" width="400px"
+            height="400px"><br>
+        <p id="item">logitech g435 headphones with ANC</p>
+        <p id="initial-price">1200$</p> <!-- stands for logitech price -->
+        <p id="addToCart" class="add2Cart">added to your cart</p>
+        <!-- <button ><i class="fa-solid fa-heart"></i></button> -->
+        <div class="like-btn">
+            <p id="like">like!</p>
+            <button onclick="toggle()" class="btn" id="Btn"><i class="fa-solid fa-heart"></i></i></button>
+        </div>
+
+        <button onclick="dToggle()" id="delete" class="dlt">delete</button>
+        <div class="quantity">
+            <p>quantity:</p>
+            <button id="q-btn-">-</button>
+            <p id="qnttyV">0</p>
+            <button id="q-btn+">+</button>
+            <p id="totalPrice">0$</p>
+
+        </div>
+    </div>
+    <script src="file.js"></script>
+    <script>
+        var el = document.getElementById('Btn');
+        var liked = document.getElementById('like');
+
+        function toggle() {
+            if (el.style.color == 'red') {
+                el.style.color = 'grey';
+                liked.textContent = 'like!';
+            } else {
+                el.style.color = 'red';
+                liked.textContent = 'liked';
+            }
+        }
+
+        var cart = document.getElementById('delete');
+        var added = document.getElementById('addToCart');
+        function dToggle() // stands for delete toggle  
+        {
+            if (cart.onclick) {
+                added.textContent = 'item removed from your cart';
+            }
+            else {
+                added.textContent = 'added to your cart';
+            }
+
+        }
+        var qnttyp = document.getElementById('q-btn+'); //stands for quantity plus 
+        var qnttym = document.getElementById('q-btn-'); //stands for quantity minus
+        var qV = document.getElementById('qnttyV');
+        var initialPriceEl=document.getElementById('initial-price');
+        var initialPrice = parseFloat(initialPriceEl.textContent.replace('$', ''));
+      var totalPrice=document.getElementById('totalPrice');// stands for total price 0
+        var quantity = 0;
+        function updateQuantity() {
+            qV.textContent = quantity;
+            updateTotalPrice();
+            
+        }
+        function vToggleP() //stands fot value toggle  plus
+        {
+
+            quantity++;
+            updateQuantity();
+        }
+        
+
+        function vToggleM()//stands fot value toggle minus
+        {
+            if (quantity > 0) {
+                quantity--;
+                updateQuantity();
+            }
+
+        }
+       
+       
+      
+
+      function updateTotalPrice() {
+            var ntPrice = quantity * initialPrice;
+            totalPrice.textContent = ntPrice + '$';
+        }
+        qnttyp.addEventListener('click', vToggleP);
+        qnttym.addEventListener('click', vToggleM);
+       
+    </script>
+</body>
+
+</html>
